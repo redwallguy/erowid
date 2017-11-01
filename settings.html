@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="Erowid_settings.css">
+</head>
+<body>
+
+<h1>Settings</h1>
+
+<div id="sites"><br>
+	<div id="radbut">
+	<input type="radio" name="bw" value="white"> Whitelist<br>
+	<input type="radio" name="bw" value="black" checked> Blacklist<br>
+	</div>
+	<div id="white">
+		<textarea id="whitetext"></textarea>
+		<br>
+
+		<button type="button" id="wbutton">
+		<span>Submit changes</span></button>
+	</div>
+	<div id="black">
+		<textarea id="blacktext"></textarea>
+		<br>
+
+		<button type="button" id="bbutton">
+		<span>Submit changes</span></button>
+	</div>
+</div>
+<div id="clear">
+<button type="button" id="cbutton">
+<span>Clear preferences</span></button>
+</div>
+<div id="help">
+<p>To whitelist sites, click the "whitelist" button and enter in urls you would like to whitelist, separated by commas. To whitelist a whole site or a url that matches a certain format, use the * symbol as a wildcard to stand in for any set of letters.</p><p>For example, to whitelist all websites starting with https://www.google.com, you would enter https://www.google.com* . To do the same for any .gov website, you would enter *.gov* .</p><p>To blacklist sites, use the same rules, but click the "blacklist" button before entering in urls. Large webpages with very complex formatting will take long times to load and may result in malformed parts of the webpage. For this reason, wikipedia is blacklisted by default, and similarly complexly formatted sites are not recommended for this extension.</p>
+</body>
+<script src="jquery-1.12.2.min.js"></script>
+<script src="settings.js"></script>
+</html>

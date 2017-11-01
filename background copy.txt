@@ -1,0 +1,73 @@
+function urlMatch( daUrl, patt) {
+	var newpatt = patt.replace(/\*/g, ".*?");
+	var re = new RegExp(newpatt);
+	return(re.test(daUrl));
+}
+console.log('working fine');
+chrome.webNavigation.onCompleted.addListener( function(details) {
+
+		console.log("page has loaded");
+		chrome.tabs.query({"active": true, "currentWindow": true}, function(tabs) {
+		var activeTab= tabs[0];
+		var currentUrl = activeTab.url;
+		});
+		try {
+		chrome.storage.local.get("worb", function(result) {
+		var worb = result.worb;
+		console.log(worb);
+if(worb != ("white" || "black")) {
+			console.log(":/");
+			chrome.tabs.create({"url": "settings.html"});
+		}
+		else if(worb == "white") {
+			console.log("It's white");
+			chrome.storage.local.get("wurls", function(result) {
+				console.log("success");
+				var wurls = result.wurls;
+			for (i in wurls) {
+				if (urlMatch(currenturl,wurls[i])) {
+					chrome.tabs.executeScript("erowid.js");
+					chrome.storage.local.get("chems", function(result) {
+					var listOfChems = result.chems;
+					chrome.storage.local.get("links", function(result) {
+					var listOfLinks = result.links;
+					chrome.tabs.sendMessage(details.tabId, {"message": "Here_are_chems", "chems": listOfChems, "links": listOfLinks});
+					break;
+					});
+					});
+				}
+			}
+			});
+		}
+		else {
+			console.log("?????");
+			chrome.storage.sync.get("burls", function(result) {
+				var burls = result.burls;
+			});
+			var inject = true;
+			for (i in burls) {
+				if (urlMatch(currenturl, burls[i])) {
+					inject = false;
+					break;
+				}
+			}
+			if (inject) {
+				chrome.tabs.executeScript("erowid.js");
+					chrome.storage.sync.get("chems", function(result) {
+					var listOfChems = result.chems;
+					});
+					chrome.storage.sync.get("links", function(result) {
+					var listOfLinks = result.links;
+					});
+				chrome.tabs.sendMessage(details.tabId, {"message": "Here_are_chems", "chems": listOfChems, "links": listOfLinks});
+			}
+		}
+		}
+		});
+		
+		catch(err) {
+			console.log("this is the problem");
+			console.log(err.name);
+			chrome.tabs.create({"url": "settings.html"});
+		}
+});

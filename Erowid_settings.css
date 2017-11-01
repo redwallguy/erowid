@@ -1,0 +1,120 @@
+body {
+	background-image: url("03-brain-map.w536.h357.2x.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+h1 {
+	text-align: center;
+}
+
+#white {
+	background-color: white;
+	position: relative;
+	width: 500px;
+	height: 200px;
+	padding: 30px;
+	margin: 15px;
+}
+
+#black {
+	background-color: black;
+	position: relative;
+	width: 500px;
+	height: 200px;
+	padding: 30px;
+	margin: 15px;
+}
+
+#clear {
+	position: relative;
+	width: 500px;
+	height: 75px;
+	padding: 35px;
+	margin: auto;
+}
+
+#cbutton {
+	position: relative;
+	left: -5px;
+}
+
+#whitetext {
+	height: 150px;
+	width: 495px;
+}
+
+#blacktext {
+	height: 150px;
+	width: 495px;
+}
+
+#sites {
+	background-color: #00ffcc;
+	opacity: 0.6;
+	width: 600px;
+	padding: 30px;
+	margin: auto;
+}
+
+#help {
+	background-color: #00ffcc;
+	opacity: 0.6;
+	width: 600px;
+	padding: 30px;
+	margin: auto;
+}
+
+button {
+	text-align: center;
+	width: 500px;
+	height: 50px;
+	display: inline-block;
+}
+
+button > span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+}
+
+button span::before {
+	background-image: url(Rod.svg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	content: "";
+	position: absolute;
+	display: inline-block;
+	opacity: 0;
+	top: 50px;
+	left: -30px;
+	transition: 0.5s;
+	width: 50px;
+	height: 50px;
+}
+
+button span::after {
+	background-image: url(Rod.svg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	content: "";
+	position: absolute;
+	display: inline-block;
+	opacity: 0;
+	top: 50px;
+	transition: 0.5s;
+	width: 50px;
+	height: 50px;
+}
+
+button:hover span::before {
+	opacity: 1;
+	top: -20px;
+}
+
+button:hover span::after {
+	opacity: 1;
+	top: -20px;
+}
+
